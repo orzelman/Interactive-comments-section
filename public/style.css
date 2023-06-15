@@ -1,0 +1,113 @@
+:root {
+    --moderate-blue: hsl(238, 40%, 52%);
+    --soft-red: hsl(358, 79%, 66%);
+    --light-grayish-blue: hsl(239, 57%, 85%);
+    --pale-red: hsl(357, 100%, 86%);
+    --dark-blue: hsl(212, 24%, 26%);
+    --grayish-blue: hsl(211, 10%, 45%);
+    --light-gray: hsl(223, 19%, 93%);
+    --very-light-gray: hsl(228, 33%, 97%);
+    --white: hsl(0, 0%, 100%);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Rubik', sans-serif;
+}
+body {
+    background-color: var(--very-light-gray);
+    color: black;
+    font-size: 16px;
+}
+img {
+    display: inline-block;
+}
+.current-user {
+    display: inline-block;
+    padding: 0 10px ;
+    font-weight: 700;
+    color: black;
+}
+.container {
+    width: auto;
+}
+.comment {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: var(--white);
+}
+.comment-content {
+    width: 100%;
+}
+.comment-title {
+    display: flex;
+    align-items: center;
+}
+.created-at {
+    padding: 0 5px;
+    color: var(--light-gray);
+    font-weight: 500;
+}
+.comment-footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.counter {
+    display: flex;
+    flex-direction: row;
+    border-radius: 8px;
+    padding: 8px;
+    background-color: var(--very-light-gray);
+}
+.plus-minus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+    width: 20px;
+    height: 20px;
+    color: var(--dark-blue);
+}
+.reply-button {
+    font-weight: 700;
+    color: var(--moderate-blue);
+}
+.reply-button img {
+    margin: 0 5px;
+}
+
+
+@media screen and (min-width: 750px) {
+    .container {
+        margin: 0 auto;
+        width: 745px;
+    }
+    .comment {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+    .comment-footer {
+        width: 0;
+        height: 0;
+    }
+  
+    .counter {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        width: 30px;
+
+    }
+
+}
+
+/* - Mobile: 375px
+- Desktop: 1440px */
