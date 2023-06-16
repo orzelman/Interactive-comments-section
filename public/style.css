@@ -32,14 +32,22 @@ img {
 }
 .container {
     width: auto;
+    padding: 16px;
 }
 .comment {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    margin: 10px 0;
     padding: 15px;
     border-radius: 5px;
     background-color: var(--white);
+}
+.reply {
+    display: flex;
+}
+.side-line {
+    width: 50px;
+    border-left: 3px solid #999;
 }
 .comment-content {
     width: 100%;
