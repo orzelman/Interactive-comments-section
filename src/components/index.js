@@ -1,0 +1,8 @@
+export {default as Comment} from "./Comment"
+export {default as CommentContent} from "./CommentContent"
+export {default as CommentFooter} from "./CommentFooter"
+export {default as CommentMobile} from "./CommentMobile"
+export {default as CommentText} from "./CommentText"
+export {default as CommentTitle} from "./CommentTitle"
+export {default as Counter} from "./Counter"
+export {default as Reply} from "./Reply"

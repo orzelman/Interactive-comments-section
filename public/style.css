@@ -37,9 +37,9 @@ img {
 .comment {
     display: flex;
     flex-direction: column;
-    margin: 10px 0;
+    margin-bottom: 10px;
     padding: 15px;
-    border-radius: 5px;
+    border-radius: 8px;
     background-color: var(--white);
 }
 .reply {
@@ -56,6 +56,9 @@ img {
     display: flex;
     align-items: center;
 }
+.comment-text {
+    padding: 10px;
+}
 .created-at {
     padding: 0 5px;
     color: var(--light-gray);
@@ -69,9 +72,14 @@ img {
 .counter {
     display: flex;
     flex-direction: row;
+    gap:10px;
     border-radius: 8px;
-    padding: 8px;
+    padding: 5px;
     background-color: var(--very-light-gray);
+}
+.scores {
+    font-weight: 500;
+    color: var(--moderate-blue);
 }
 .plus-minus {
     display: flex;
@@ -81,10 +89,14 @@ img {
     width: 20px;
     height: 20px;
     color: var(--dark-blue);
+    cursor: pointer;
 }
 .reply-button {
     font-weight: 700;
     color: var(--moderate-blue);
+}
+.reply-window {
+    display: flex;
 }
 .reply-button img {
     margin: 0 5px;
