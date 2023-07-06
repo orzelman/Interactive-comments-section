@@ -6,16 +6,15 @@ import {Comment, Reply} from "./index.js";
 
 
 function App() {
-  let mobile = true;
-  (window.innerWidth >= 750)? mobile = false : mobile=true;
-  return (
+  console.log(data.comments.length)
+;  return (
     <div className="container">
       {data.comments.map((comment, index) => {
       return(
         <>
-          <Comment key={index} comment={comment} user={data.currentUser}/>
+          <Comment key={index} comment={comment} currentUser={data.currentUser}/>
           {comment.replies.map((reply, index) => {
-            return(<Reply key={index} comment={reply} user={data.currentUser}/>)
+            return(<Reply key={index} comment={reply} currentUser={data.currentUser}/>)
         })}
         </>)
     })}

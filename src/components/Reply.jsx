@@ -5,7 +5,7 @@ export default function Reply(props) {
     return(
         <div className="reply">
             <div className="side-line"/>
-            <Comment comment={props.comment} user={props.currentUser}/>
+            <Comment comment={props.comment} currentUser={props.currentUser}/>
         </div>
     )
 }

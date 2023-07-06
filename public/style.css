@@ -55,11 +55,17 @@ img {
 .comment-title {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+}
+.comment-title-item {
+    display: flex;
+    align-items: center;
 }
 .comment-text {
     padding: 10px;
 }
 .created-at {
+    display: inline-block;
     padding: 0 5px;
     color: var(--light-gray);
     font-weight: 500;
@@ -91,12 +97,17 @@ img {
     color: var(--dark-blue);
     cursor: pointer;
 }
-.reply-button {
+.icon-button {
+    display: inline-block;
+    padding: 0 5px;
     font-weight: 700;
     color: var(--moderate-blue);
 }
+.delete-button {
+    color: var(--soft-red);
+}
 .reply-window {
-    display: flex;
+    display: none;
 }
 .reply-button img {
     margin: 0 5px;
@@ -112,7 +123,7 @@ img {
         display: flex;
         flex-direction: row-reverse;
     }
-    .comment-footer {
+    .comment-footer-desktop {
         width: 0;
         height: 0;
     }

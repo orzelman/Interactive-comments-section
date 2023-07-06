@@ -1,6 +1,6 @@
 import React from "react";
 import Counter from "./Counter";
-import ReplyButton from "./ReplyButton";
+import ReplyButton from "./Buttons/ReplyButton";
 
 export default function CommentFooter(props) {
     return(
