@@ -12,8 +12,11 @@ export default function Comment(props) {
         console.log(props.currentUser.username)
         return(
         <div className="comment">
-            <CommentContent comment={props.comment} currentUser={props.currentUser}/>
-            <ReplyWindow comment={props.comment} user={props.currentUser}/>
+            <CommentContent 
+                comment={props.comment}
+                currentUser={props.currentUser}
+                setCurrentReplyWindow={props.setCurrentReplyWindow}
+                />
         </div>)
 
     }

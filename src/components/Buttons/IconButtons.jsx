@@ -4,17 +4,16 @@ import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
 
 
-export default function IconButtons({author}) {
+export default function IconButtons(props) {
     return(
         <div className="reply-button">
-            {author? 
+            {props.author? 
             <>
                 <DeleteButton />
                 <EditButton />
             </> 
             :
-            <ReplyButton /> }
-            
+            <ReplyButton id={props.id} setCurrentReplyWindow={props.setCurrentReplyWindow}/> }
         </div>
     )
 }
