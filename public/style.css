@@ -46,7 +46,7 @@ img {
     display: flex;
 }
 .side-line {
-    width: 50px;
+    width: 30px;
     border-left: 3px solid #999;
 }
 .comment-content {
@@ -60,6 +60,14 @@ img {
 .comment-title-item {
     display: flex;
     align-items: center;
+}
+.avatar {
+    width: 40px;
+    height: 40px;
+}
+.avatar-reply {
+    width: 60px;
+    height: 60px;
 }
 .comment-text {
     padding: 10px;
@@ -109,6 +117,14 @@ img {
     color: var(--soft-red);
     cursor: pointer;
 }
+.add-reply-button {
+    display: flex;
+    padding: 8px 18px;
+    border-radius: 5px;
+    background-color: var(--moderate-blue);
+    color: var(--white);
+    cursor: pointer;
+}
 .reply-window {
     display: flex;
     margin-top: 6px;
@@ -118,7 +134,7 @@ img {
 }
 .textarea-reply {
     width: 100%;
-    margin: 10px;
+    margin: 0 10px;
     padding: 10px;
     border: 1px solid black;
     border-radius: 6px;
@@ -126,6 +142,46 @@ img {
 }
 .reply-button img {
     margin: 0 5px;
+}
+.popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 340px;
+    margin: 0 auto;
+    padding: 15px;
+    background-color: var(--white);
+    color: var(--dark-blue);
+    font-weight: 400;
+    border-radius: 6px;
+    z-index: 20;
+    transform: translate(-50%, -50%);
+    cursor: default;
+}
+.popup-button {
+    width: 50%;
+    padding: 8px 12px;
+    border-radius: 4px;
+    color: var(--white);
+    text-transform: capitalize;
+    text-align: center;
+    cursor: pointer;
+}
+.bgc-grey {
+    background-color: var(--grayish-blue);
+}
+.bgc-red {
+    background-color: var(--soft-red);
+}
+.grey-cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;left: 0;
+    opacity: .7;
+    background-color: grey;
+    z-index: 10;
+    cursor: default;
 }
 
 
@@ -137,6 +193,7 @@ img {
     .comment {
         display: flex;
         flex-direction: row-reverse;
+        width: 100%;
     }
     .comment-footer-desktop {
         width: 0;

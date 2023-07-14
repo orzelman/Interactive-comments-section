@@ -9,6 +9,7 @@ export default function CommentContent(props) {
             comment={props.comment}
             currentUser={props.currentUser}
             setCurrentReplyWindow={props.setCurrentReplyWindow}
+            deleteComment={props.deleteComment}
             />
         <CommentText comment={props.comment} />
     </div>)

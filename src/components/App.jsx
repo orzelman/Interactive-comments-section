@@ -1,62 +1,73 @@
 import React, {useState} from "react";
 import data from "../data.json"
+import {findMaxId} from "./functions";
 // import Comment from "./Comment";
 // import Reply from "./Reply";
 import {Comment, Reply, ReplyWindow} from "./index.js"; 
-
 
 function App() {
   const[currentReplyWindow, setCurrentReplyWindow] = useState(0);
   const [comments, setComments] = useState(data.comments)
 
-
-  function findMaxId(commentsList, currentMaxId=0) {
-    let _maxId = currentMaxId;
-    commentsList.forEach(comment => {
-      if(comment.id > _maxId) {
-        _maxId = comment.id;
-      }
-      if(Array.isArray(comment.replies) && comment.replies.length > 0) {
-        const repliesMax = findMaxId(comment.replies)
-        if (repliesMax > _maxId) {
-          _maxId = repliesMax
-        }
-      }
-    })
-    return _maxId;
-  };
-
-  function addComment() {
+  function addComment(text, id) {
     const _maxId = findMaxId(comments);
+    console.log(text, id)
     const newComment =     {
       "id": _maxId + 1,
-      "content": "Bingo!",
+      "content": text,
       "createdAt": "1 month ago",
-      "score": 12,
+      "score": 0,
       "user": {
         "image": { 
-          "png": "./images/avatars/image-amyrobson.png",
+          "png": data.currentUser.image.png,
           "webp": "./images/avatars/image-amyrobson.webp"
         },
-        "username": "amyrobson"
+        "username": data.currentUser.username
       },
       "replies": []
     }
-    setComments(prevComments => [...prevComments, newComment])
-    console.log("comments: ", comments);
+    // const commentToReply = comments.find(comment => comment.id===id);
+    const commentToReply = comments.find(comment => {
+      if(comment.id === id) {
+        return comment
+      }
+      if(Array.isArray(comment.replies) && comment.replies.length > 0) {
+        comment.replies.find(reply => reply.id === id)
+      }
+    })
+    // commentToReply.replies.push(newComment);
+    console.log(commentToReply)
+    setCurrentReplyWindow(0);
+  }
+
+
+  function deleteComment(idToRemove, commentsDel=comments) {
+    console.log("id = ",idToRemove);
+    console.log("comments = ", commentsDel);
+    const founded = commentsDel.filter(comment => {
+      if(comment.id !== idToRemove) {
+        if(Array.isArray(comment.replies) && comment.replies.length > 0) {
+          comment.replies = comment.replies.filter(replay => replay.id !== idToRemove)
+        return comment
+        }
+        else {
+          return comment
+        }
+      }
+    })
+    setComments(founded)
   };
 
 
-
-
   function showReplyWindow(id) {
-    console.log("ustawiam id = ",id);
+    console.log("show reply widow, id=",id)
     setCurrentReplyWindow(id);
   }
 
   return (
     <div className="container">
-      <h1 onClick={addComment}>ready!</h1>
+      <h1 onClick={addComment}>reay!</h1>
+      <h2>{new Date().getSeconds()}</h2>
       {comments.map((comment, index) => {
       return(
         <>
@@ -65,15 +76,22 @@ function App() {
             comment={comment}
             currentUser={data.currentUser}
             setCurrentReplyWindow={showReplyWindow}
+            deleteComment={deleteComment}
             />
-          {currentReplyWindow===index+1? <ReplyWindow currentUser={data.currentUser}/> : ""}
+          {currentReplyWindow===comment.id? <ReplyWindow 
+            currentUser={data.currentUser}
+            addComment={addComment}
+            comment={comment} 
+          /> : ""}
           {comment.replies.map((reply, index) => {
             return<>
               <Reply
                 key={index}
                 comment={reply}
                 currentUser={data.currentUser}
+                setCurrentReplyWindow={showReplyWindow}
                 currentReplyWindow={currentReplyWindow}
+                deleteComment={deleteComment}
                 />
               </>
         })}

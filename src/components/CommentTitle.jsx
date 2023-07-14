@@ -12,8 +12,8 @@ export default function CommentTitle(props) {
     return(
         <div className="comment-title">
             <div className="comment-title-item">
-                <img src={props.comment.user.image.png} alt="avatar"></img>
-                <p className="current-user">{props.currentUser.username}</p>
+                <img className="avatar" src={props.comment.user.image.png} alt="avatar"></img>
+                <p className="current-user">{props.comment.user.username}</p>
                 {isAuthor? <YouButton /> : ""}
                 <p className="created-at">{props.comment.createdAt}</p>
             </div>
@@ -21,14 +21,14 @@ export default function CommentTitle(props) {
                 {(window.innerWidth > 765)? 
                 <IconButtons 
                     author={isAuthor} 
-                    id={props.comment.id}
+                    comment={props.comment}
                     setCurrentReplyWindow={props.setCurrentReplyWindow}
+                    deleteComment={props.deleteComment}
                     />
                 :
                 ''
                 }
             </div>
-            
         </div>
     )
 }

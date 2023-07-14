@@ -6,12 +6,21 @@ export default function Reply(props) {
     return(
         <div className="reply">
             <div className="side-line"/>
-            <Comment comment={props.comment} currentUser={props.currentUser}/>
-            {props.comment.id===props.currentReplyWindow? 
-                <ReplyWindow currentUser={props.currentUser} />
-                :
-                ""
-            }
+            <div>
+                <Comment 
+                    comment={props.comment}
+                    currentUser={props.currentUser}
+                    setCurrentReplyWindow={props.setCurrentReplyWindow}
+                    deleteComment={props.deleteComment}
+                    />
+                {props.currentReplyWindow===props.comment.id? 
+                <ReplyWindow 
+                    currentUser={props.currentUser}
+                    addComment={props.addComment}
+                    comment={props.comment} 
+                />
+                : ""}
+            </div>
         </div>
     )
 }
