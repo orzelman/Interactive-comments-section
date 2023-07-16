@@ -20,7 +20,9 @@ export default function ReplyWindow(props) {
             value={newText}>
         </textarea>
         <div>
-            <div onClick={handleAddComment} className="add-reply-button">REPLY</div>
+            <div onClick={handleAddComment} className="add-reply-button">
+                {props.comment.id===0? "SEND" : "REPLY" }
+            </div>
         </div>
     </div>)
 }

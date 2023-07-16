@@ -14,7 +14,7 @@ export default function IconButtons(props) {
             {props.author? 
             <>
                 <DeleteButton setIsPopup={() => setIsPopup}/>
-                <EditButton />
+                <EditButton id={props.comment.id} setCurrentUpdateWindow={props.setCurrentUpdateWindow}/>
             </> 
             :
             <ReplyButton id={props.comment.id} setCurrentReplyWindow={props.setCurrentReplyWindow}/> }

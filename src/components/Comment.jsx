@@ -1,5 +1,6 @@
 import React from "react";
 import CommentContent from "./CommentContent";
+import Counter from "./Counter";
 import CommentFooter from "./CommentFooter";
 import ReplyWindow from "./ReplyWindow";
 
@@ -14,8 +15,12 @@ export default function Comment(props) {
                 comment={props.comment}
                 currentUser={props.currentUser}
                 setCurrentReplyWindow={props.setCurrentReplyWindow}
+                setCurrentUpdateWindow={props.setCurrentUpdateWindow}
+                currentUpdateWindow={props.currentUpdateWindow}
                 deleteComment={props.deleteComment}
+                updateComment={props.updateComment}
                 />
+            <Counter comment={props.comment}/>
         </div>)
 
     }

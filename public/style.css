@@ -30,15 +30,20 @@ img {
     font-weight: 700;
     color: black;
 }
+.wrapper {
+    width: 100%;
+    min-height: 100vh;
+}
 .container {
     width: auto;
     padding: 16px;
 }
 .comment {
     display: flex;
+    gap: 15px;
     flex-direction: column;
     margin-top: 12px;
-    padding: 15px;
+    padding: 12px;
     border-radius: 8px;
     background-color: var(--white);
 }
@@ -46,16 +51,30 @@ img {
     display: flex;
 }
 .side-line {
-    width: 30px;
+    width: 20px;
     border-left: 3px solid #999;
 }
 .comment-content {
     width: 100%;
 }
+.update-window {
+    display: flex;
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: var(--white);
+}
+.update-item {
+    width: 100%;
+    padding: 0 10px;
+
+}
 .comment-title {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-bottom: 15px;
+    width: 100%;
 }
 .comment-title-item {
     display: flex;
@@ -70,7 +89,6 @@ img {
     height: 60px;
 }
 .comment-text {
-    padding: 10px;
 }
 .created-at {
     display: inline-block;
@@ -86,6 +104,7 @@ img {
 .counter {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     gap:10px;
     border-radius: 8px;
     padding: 5px;
@@ -118,7 +137,7 @@ img {
     cursor: pointer;
 }
 .add-reply-button {
-    display: flex;
+    display: inline-block;
     padding: 8px 18px;
     border-radius: 5px;
     background-color: var(--moderate-blue);
@@ -127,6 +146,7 @@ img {
 }
 .reply-window {
     display: flex;
+    gap: 10px;
     margin-top: 6px;
     padding: 15px;
     border-radius: 8px;
@@ -134,7 +154,6 @@ img {
 }
 .textarea-reply {
     width: 100%;
-    margin: 0 10px;
     padding: 10px;
     border: 1px solid black;
     border-radius: 6px;
@@ -193,6 +212,7 @@ img {
     .comment {
         display: flex;
         flex-direction: row-reverse;
+        align-items: center;
         width: 100%;
     }
     .comment-footer-desktop {
@@ -203,9 +223,9 @@ img {
     .counter {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
-        height: auto;
+        height: 100px;
         width: 30px;
 
     }

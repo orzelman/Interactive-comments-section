@@ -6,12 +6,15 @@ export default function Reply(props) {
     return(
         <div className="reply">
             <div className="side-line"/>
-            <div>
+            <div style={{width: "100%"}}>
                 <Comment 
                     comment={props.comment}
                     currentUser={props.currentUser}
                     setCurrentReplyWindow={props.setCurrentReplyWindow}
+                    setCurrentUpdateWindow={props.setCurrentUpdateWindow}
+                    currentUpdateWindow={props.currentUpdateWindow}
                     deleteComment={props.deleteComment}
+                    updateComment={props.updateComment}
                     />
                 {props.currentReplyWindow===props.comment.id? 
                 <ReplyWindow 

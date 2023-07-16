@@ -23,6 +23,7 @@ export default function CommentTitle(props) {
                     author={isAuthor} 
                     comment={props.comment}
                     setCurrentReplyWindow={props.setCurrentReplyWindow}
+                    setCurrentUpdateWindow={props.setCurrentUpdateWindow}
                     deleteComment={props.deleteComment}
                     />
                 :
