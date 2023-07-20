@@ -9,3 +9,4 @@ export {default as ReplyWindow} from "./ReplyWindow"
 export {default as Reply} from "./Reply"
 export {default as DeletePopup} from "./DeletePopup"
 export {default as UpdateWindow} from "./UpdateWindow"
+export {default as SelectUser} from "./SelectUser";

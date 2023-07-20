@@ -20,7 +20,7 @@ export default function Comment(props) {
                 deleteComment={props.deleteComment}
                 updateComment={props.updateComment}
                 />
-            <Counter comment={props.comment}/>
+            <Counter comment={props.comment} updateScore={props.updateScore}/>
         </div>)
 
     }

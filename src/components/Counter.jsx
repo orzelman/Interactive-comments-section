@@ -1,19 +1,31 @@
-import React, {useState} from "react";
+import React from "react";
 
 export default function Counter(props) {
-    const [points, setPoints] = useState(props.comment.score)
+    const localScores = JSON.parse(localStorage.getItem("localScores"));
+
     const handleIncrease = () => {
-        console.log("inc");
-        setPoints(points + 1)
+        props.updateScore(props.comment.id, props.comment.score + 1)
     }
+
     const handleDecrease = () => {
-        setPoints(points - 1);
+        if(props.comment.score === 0) {
+            return
+        }
+        else {
+            props.updateScore(props.comment.id, props.comment.score - 1)
+        }
+    }
+
+    const handleMouseEnter = (event) => {
+        if(localScores[props.comment.id]) {
+            event.target.classList.add("show-info");
+        }
     }
 
     return(
     <div className="counter">
-        <p className="plus-minus" onClick={handleIncrease}>+</p>
+        <p className="plus-minus" onClick={handleIncrease} onMouseEnter={handleMouseEnter}>+</p>
         <p className="scores">{props.comment.score}</p>
-        <p className="plus-minus" onClick={handleDecrease}>-</p>
+        <p className="plus-minus" onClick={handleDecrease} onMouseEnter={handleMouseEnter}>-</p>
     </div>)
 }

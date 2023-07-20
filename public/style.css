@@ -30,9 +30,16 @@ img {
     font-weight: 700;
     color: black;
 }
-.wrapper {
-    width: 100%;
-    min-height: 100vh;
+.select-user {
+    padding: 20px;
+    font-weight: 700;
+}
+.select-select {
+    padding: 2px 6px;
+    border: 1px solid var(--moderate-blue);
+    border-radius: 5px;
+    background-color: var(--moderate-blue);
+    color: white;
 }
 .container {
     width: auto;
@@ -116,6 +123,7 @@ img {
 }
 .plus-minus {
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
     padding: 3px;
@@ -123,6 +131,16 @@ img {
     height: 20px;
     color: var(--dark-blue);
     cursor: pointer;
+}
+.show-info:hover::before {
+    content: "You've already voted";
+    position: absolute;
+    top: -20px; left: 0;
+    width: 100px;
+    background-color: #fff;
+    border: solid 1px var(--soft-red);
+    border-radius: 5px;
+    text-align: center;
 }
 .icon-button {
     display: inline-block;
@@ -163,7 +181,7 @@ img {
     margin: 0 5px;
 }
 .popup {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     width: 340px;
@@ -193,7 +211,7 @@ img {
     background-color: var(--soft-red);
 }
 .grey-cover {
-    position: absolute;
+    position:fixed;
     width: 100%;
     height: 100%;
     top: 0;left: 0;

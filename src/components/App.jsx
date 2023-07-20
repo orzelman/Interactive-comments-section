@@ -1,28 +1,56 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import data from "../data.json"
 import {findMaxId} from "./functions";
-// import Comment from "./Comment";
-// import Reply from "./Reply";
-import {Comment, Reply, ReplyWindow, UpdateWindow} from "./index.js"; 
+import {Comment, Reply, ReplyWindow, SelectUser} from "./index.js"; 
 
 function App() {
   const[currentReplyWindow, setCurrentReplyWindow] = useState(0);
   const [currentUpdateWindow, setCurrentUpdateWindow] = useState(0);
-  const [comments, setComments] = useState(data.comments)
+  const [comments, setComments] = useState(data.comments);
+  const [user, setUser] = useState(data.currentUser)
+  const [localScores, setLocalScores] = useState(() => {
+    const maxId = findMaxId(comments);
+    const local = {};
+    for(let i=0; i<=maxId; i++) {
+      local[i] = false;
+    }
+    return local
+  });
+
+  useEffect(() => {
+    localStorage.setItem("localScores", JSON.stringify(localScores));
+  }, [localScores]);
+
+  function handleSelectUser(selectedUser) {
+    if(user.username !== selectedUser) {
+      const newUser= {
+        "image": { 
+          "png": `./images/avatars/image-${selectedUser}.png`,
+          "webp": "./images/avatars/image-juliusomo.webp"
+        },
+        "username": selectedUser
+      }
+      setUser(newUser)
+    }
+    else {
+      console.log("welcome back mr juliusomo")
+    }
+  }
+
 
   function addComment(text, id) {
-    const _maxId = findMaxId(comments);
+    const newId = findMaxId(comments) + 1;
     const newComment =     {
-      "id": _maxId + 1,
+      "id": newId,
       "content": text,
       "createdAt": "1 month ago",
       "score": 0,
       "user": {
         "image": { 
-          "png": data.currentUser.image.png,
+          "png": user.image.png,
           "webp": "./images/avatars/image-amyrobson.webp"
         },
-        "username": data.currentUser.username
+        "username": user.username
       },
       "replies": []
     }
@@ -44,8 +72,12 @@ function App() {
       commentToReply.replies.push(newComment);
       setCurrentReplyWindow();
     }
-  }
 
+    const newScores = JSON.parse(localStorage.getItem("localScores"));
+    console.log("zapisuje id = ", newId)
+    newScores[newId] = false;
+    setLocalScores(newScores)
+  }
 
   function deleteComment(idToRemove, commentsDel=comments) {
     const founded = commentsDel.filter(comment => {
@@ -76,17 +108,6 @@ function App() {
     setCurrentUpdateWindow(id)
   }
 
-  function findComment(id) {
-    return comments.find(comment => {
-      if(comment.id===id) {
-        return comment
-      }
-      if(Array.isArray(comment.replies)) {
-        return comment.replies.find(reply => reply.id===id)
-      }
-    })
-  }
-
   function updateComment(id, text) {
     const newComments = comments.map(comment => {
       if(comment.id === id) {
@@ -107,28 +128,53 @@ function App() {
 
   }
 
+  function updateScore(id, score) {
+    const localScores = (JSON.parse(localStorage.getItem('localScores')))
 
+    if(localScores[id] === false) {
+      const newComment = comments.map(comment => {
+        if(comment.id === id) {
+          comment.score = score
+        }
+        if(Array.isArray(comment.replies)) {
+          comment.replies.map(reply => {
+            if(reply.id === id) {
+              reply.score = score
+            }
+            return reply
+          })
+        }
+        return comment
+      })
+      setComments(newComment);
+      localScores[id] = true;
+      localStorage.setItem("localScores", JSON.stringify(localScores))
+    }
+    else {
+      return
+    }
+  }
 
-  console.log("currentUpdateWindow = ", currentUpdateWindow)
   return (
     <div className="container">
-      <h1>{currentUpdateWindow}</h1>
-      <h2>{new Date().getSeconds()}</h2>
+      <SelectUser selectUser={handleSelectUser}/>
       {comments.map((comment, index) => {
       return(
         <>
           <Comment
             key={index}
             comment={comment}
-            currentUser={data.currentUser}
+            currentUser={user}
             setCurrentReplyWindow={showReplyWindow}
             setCurrentUpdateWindow={showUpdateWindow}
             currentUpdateWindow={currentUpdateWindow}
             deleteComment={deleteComment}
+            updateComment={updateComment}
+            updateScore={updateScore}
             />
 
           {currentReplyWindow===comment.id? <ReplyWindow 
-            currentUser={data.currentUser}
+            currentUser={user}
             addComment={addComment}
             comment={comment} 
           /> : ""}
@@ -137,7 +183,7 @@ function App() {
               <Reply
                 key={index}
                 comment={reply}
-                currentUser={data.currentUser}
+                currentUser={user}
                 setCurrentReplyWindow={showReplyWindow}
                 setCurrentUpdateWindow={showUpdateWindow}
                 currentUpdateWindow={currentUpdateWindow}
@@ -145,6 +191,7 @@ function App() {
                 addComment={addComment}
                 deleteComment={deleteComment}
                 updateComment={updateComment}
+                updateScore={updateScore}
               />
               
             </>
@@ -154,7 +201,7 @@ function App() {
     })}
     {
     (currentReplyWindow===0)? 
-      <ReplyWindow currentUser={data.currentUser} addComment={addComment} comment={{id: 0}}/>
+      <ReplyWindow currentUser={user} addComment={addComment} comment={{id: 0}}/>
     :
       ""
     }
