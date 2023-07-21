@@ -5,7 +5,9 @@ import ReplyButton from "./Buttons/ReplyButton";
 export default function CommentFooter(props) {
     return(
         <div className="comment-footer">
-            <Counter comment={props.comment}/>
+            <Counter 
+                comment={props.comment}
+                updateScore={props.updateScore}/>
             <ReplyButton />
         </div>
     )

@@ -1,10 +1,11 @@
 import React, {useState} from "react";
 import CommentTitle from "./CommentTitle";
 import CommentText from "./CommentText";
-import ReplyButton from "./Buttons/ReplyButton";
+import FooterMobile from "./FooterMobile";
 
 export default function CommentContent(props) {
     const [updatedComment, setUpdatedComment] = useState(props.comment.content);
+    console.log("mobileDesign = ", props.MobileDesign)
     function handleChangeComment(event) {
         setUpdatedComment(event.target.value)
     }
@@ -19,7 +20,8 @@ export default function CommentContent(props) {
             setCurrentReplyWindow={props.setCurrentReplyWindow}
             setCurrentUpdateWindow={props.setCurrentUpdateWindow}
             deleteComment={props.deleteComment}
-            />
+            isMobileDesign={props.isMobileDesign}
+            /> 
         {props.comment.id===props.currentUpdateWindow?
         <div style={{textAlign: "right"}}>
             <textarea 
@@ -33,6 +35,17 @@ export default function CommentContent(props) {
         :
         <CommentText comment={props.comment} />
         }
-        
-    </div>)
+        {props.isMobileDesign?
+        <FooterMobile
+            comment={props.comment}
+            currentUser={props.currentUser}
+            setCurrentReplyWindow={props.setCurrentReplyWindow}
+            setCurrentUpdateWindow={props.setCurrentUpdateWindow}
+            deleteComment={props.deleteComment}
+            updateScore={props.updateScore}
+        />
+        :
+        ''
+        }
+    </div>) 
 }  

@@ -8,12 +8,7 @@ export default function Counter(props) {
     }
 
     const handleDecrease = () => {
-        if(props.comment.score === 0) {
-            return
-        }
-        else {
-            props.updateScore(props.comment.id, props.comment.score - 1)
-        }
+        props.updateScore(props.comment.id, props.comment.score - 1)
     }
 
     const handleMouseEnter = (event) => {

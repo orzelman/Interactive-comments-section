@@ -117,6 +117,7 @@ img {
     padding: 5px;
     background-color: var(--very-light-gray);
 }
+
 .scores {
     font-weight: 500;
     color: var(--moderate-blue);
@@ -176,9 +177,15 @@ img {
     border: 1px solid black;
     border-radius: 6px;
     resize: none;
+    overflow: hidden;
 }
 .reply-button img {
     margin: 0 5px;
+}
+.footer-mobile {
+    display: flex;  
+    justify-content: space-between;
+    padding: 10px 0;
 }
 .popup {
     position: fixed;
@@ -222,7 +229,7 @@ img {
 }
 
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
     .container {
         margin: 0 auto;
         width: 745px;
@@ -245,7 +252,6 @@ img {
         align-items: center;
         height: 100px;
         width: 30px;
-
     }
 
 }

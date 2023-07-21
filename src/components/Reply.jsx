@@ -16,6 +16,7 @@ export default function Reply(props) {
                     deleteComment={props.deleteComment}
                     updateComment={props.updateComment}
                     updateScore={props.updateScore}
+                    isMobileDesign={props.isMobileDesign}
                     />
                 {props.currentReplyWindow===props.comment.id? 
                 <ReplyWindow 

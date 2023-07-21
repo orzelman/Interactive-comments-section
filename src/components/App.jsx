@@ -7,7 +7,8 @@ function App() {
   const[currentReplyWindow, setCurrentReplyWindow] = useState(0);
   const [currentUpdateWindow, setCurrentUpdateWindow] = useState(0);
   const [comments, setComments] = useState(data.comments);
-  const [user, setUser] = useState(data.currentUser)
+  const [user, setUser] = useState(data.currentUser);
+  const [mobileDesign, setMobileDesign] = useState(window.innerWidth < 769);
   const [localScores, setLocalScores] = useState(() => {
     const maxId = findMaxId(comments);
     const local = {};
@@ -19,7 +20,21 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem("localScores", JSON.stringify(localScores));
-  }, [localScores]);
+  }, [localScores]);  
+
+  useEffect(() => {
+    function handleResize() {
+      const isMobile = window.innerWidth < 769;
+      console.log("isMobile = ", isMobile)
+      setMobileDesign(prev => {
+        (prev !== isMobile)? setMobileDesign(isMobile)
+        :
+        setMobileDesign(prev)
+      })
+    }
+    window.addEventListener('resize', () => handleResize())
+  }, []);
+
 
   function handleSelectUser(selectedUser) {
     if(user.username !== selectedUser) {
@@ -37,13 +52,13 @@ function App() {
     }
   }
 
-
   function addComment(text, id) {
+    console.log(new Date().getTime())
     const newId = findMaxId(comments) + 1;
     const newComment =     {
       "id": newId,
       "content": text,
-      "createdAt": "1 month ago",
+      "createdAt": "today",
       "score": 0,
       "user": {
         "image": { 
@@ -74,7 +89,6 @@ function App() {
     }
 
     const newScores = JSON.parse(localStorage.getItem("localScores"));
-    console.log("zapisuje id = ", newId)
     newScores[newId] = false;
     setLocalScores(newScores)
   }
@@ -171,6 +185,7 @@ function App() {
             deleteComment={deleteComment}
             updateComment={updateComment}
             updateScore={updateScore}
+            isMobileDesign={mobileDesign}
             />
 
           {currentReplyWindow===comment.id? <ReplyWindow 
@@ -192,6 +207,7 @@ function App() {
                 deleteComment={deleteComment}
                 updateComment={updateComment}
                 updateScore={updateScore}
+                isMobileDesign={mobileDesign}
               />
               
             </>

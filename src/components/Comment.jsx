@@ -19,8 +19,15 @@ export default function Comment(props) {
                 currentUpdateWindow={props.currentUpdateWindow}
                 deleteComment={props.deleteComment}
                 updateComment={props.updateComment}
+                isMobileDesign={props.isMobileDesign}
+                updateScore={props.updateScore}
                 />
-            <Counter comment={props.comment} updateScore={props.updateScore}/>
+            {!props.isMobileDesign?
+                <Counter comment={props.comment} updateScore={props.updateScore}/>
+            :
+            ''
+            }
+            
         </div>)
 
     }

@@ -3,12 +3,7 @@ import IconButtons from "./Buttons/IconButtons";
 import YouButton from "./Buttons/YouButton";
 
 export default function CommentTitle(props) {
-    let isAuthor = false;
-    if(props.currentUser.username === props.comment.user.username) {
-        isAuthor = true;
-    }
-    else
-        isAuthor = false;
+    const isAuthor = props.currentUser.username === props.comment.user.username
     return(
         <div className="comment-title">
             <div className="comment-title-item">
@@ -18,7 +13,7 @@ export default function CommentTitle(props) {
                 <p className="created-at">{props.comment.createdAt}</p>
             </div>
             <div className="comment-title-item">
-                {(window.innerWidth > 765)? 
+                {(!props.isMobileDesign)? 
                 <IconButtons 
                     author={isAuthor} 
                     comment={props.comment}
