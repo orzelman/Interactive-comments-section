@@ -5,7 +5,6 @@ import FooterMobile from "./FooterMobile";
 
 export default function CommentContent(props) {
     const [updatedComment, setUpdatedComment] = useState(props.comment.content);
-    console.log("mobileDesign = ", props.MobileDesign)
     function handleChangeComment(event) {
         setUpdatedComment(event.target.value)
     }

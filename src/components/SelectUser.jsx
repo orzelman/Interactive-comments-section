@@ -7,7 +7,7 @@ function SelectUser(props) {
     }
 
     return(<div className="select-user" >
-            <label for="choice">Select user: </label>
+            <label htmlFor="choice">Select user: </label>
             <select className='select-select' id="choice" onChange={handleSelectUser}>
                 <option value="juliusomo">juliusomo</option>
                 <option value="amyrobson">amyrobson</option>

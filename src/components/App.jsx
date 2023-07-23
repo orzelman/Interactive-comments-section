@@ -25,7 +25,6 @@ function App() {
   useEffect(() => {
     function handleResize() {
       const isMobile = window.innerWidth < 769;
-      console.log("isMobile = ", isMobile)
       setMobileDesign(prev => {
         (prev !== isMobile)? setMobileDesign(isMobile)
         :
@@ -47,13 +46,10 @@ function App() {
       }
       setUser(newUser)
     }
-    else {
-      console.log("welcome back mr juliusomo")
-    }
+    else {}
   }
 
   function addComment(text, id) {
-    console.log(new Date().getTime())
     const newId = findMaxId(comments) + 1;
     const newComment =     {
       "id": newId,
@@ -118,7 +114,6 @@ function App() {
   }
 
   function showUpdateWindow(id) {
-    console.log("show", id)
     setCurrentUpdateWindow(id)
   }
 
