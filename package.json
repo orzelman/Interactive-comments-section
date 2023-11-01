@@ -1,11 +1,7 @@
 {
   "name": "inter-comm",
   "version": "0.1.0",
-<<<<<<< HEAD
   "homepage": "https://github.com/orzelman/Interactive-comments-section",
-=======
-  "homepage": "https://github.com/orzelman/Interactive-comments-section",
->>>>>>> 553d1a894b9e3293b7cf394b283a8bf9dd66d405
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
